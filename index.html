@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp • Santiago Aguirre</title>
+    <meta name="description" content="Perfil de WhatsApp de Santiago Aguirre" />
+
+    <!-- Favicon (WhatsApp icon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%2325D366' d='M128 0C57.3 0 0 57.3 0 128c0 23 6 44.7 16.6 63.3L0 256l66.6-16.3C85.3 250 106.9 256 128 256c70.7 0 128-57.3 128-128S198.7 0 128 0'/%3E%3Cpath fill='%23fff' d='M195.9 160.7c-2.9 8.1-14.4 14.9-23.3 16.9c-6.2 1.3-14.3 2.4-41.5-8.9c-34.8-14.5-57.3-50.3-59.1-52.6c-1.7-2.3-14.1-18.8-14.1-36c0-17.2 8.9-25.5 12-29c2.9-3.4 6.4-4.3 8.5-4.3c2.1 0 4.3 0 6.2 0.1c2 0.1 4.6-0.7 7.1 5.4c2.9 7.1 9.9 24.5 10.8 26.2c0.9 1.7 1.4 3.7 0.3 5.9c-1.1 2.3-1.7 3.7-3.4 5.7c-1.7 2-3.5 4.4-5 5.9c-1.7 1.7-3.5 3.5-1.5 6.9c2 3.4 8.7 14.4 18.7 23.3c12.8 11.4 23.6 15.1 27.1 16.8c3.5 1.7 5.5 1.4 7.6-0.9c2.1-2.3 8.8-10.2 11.2-13.7c2.3-3.4 4.9-2.9 8.1-1.7c3.4 1.1 21.3 10 24.9 11.8c3.5 1.7 5.9 2.6 6.7 4.1c0.8 1.3 0.8 7.6-2.1 15.7z'/%3E%3C/svg%3E" />
+
+    <!-- Base styling -->
+    <style>
+      :root{
+        --wa-green:#25D366;
+        --wa-dark:#075E54;
+        --text:#23303a;
+        --muted:#6b7b85;
+        --btn:#1f7a63; /* darker WhatsApp-like button */
+        --btn-hover:#176554;
+        --bg:#ffffff;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol', sans-serif;
+        color:var(--text);
+        background:var(--bg);
+      }
+      header{
+        width:100%;
+        padding:18px 22px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        border-bottom:1px solid #eef2f4;
+        position:sticky; top:0; background:#fff; z-index:2;
+      }
+      .brand{
+        display:flex; align-items:center; gap:12px;
+        font-weight:700; font-size:22px; color:#1f2b33;
+      }
+      .brand svg{width:28px; height:28px}
+      .top-actions a{
+        text-decoration:none;
+        padding:10px 16px;
+        border-radius:999px;
+        background:var(--wa-green);
+        color:#fff; font-weight:700;
+      }
+
+      main{
+        min-height:calc(100% - 200px);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:48px 20px 64px;
+      }
+      .card{
+        width:100%;
+        max-width:720px;
+        display:flex; flex-direction:column; align-items:center; gap:18px;
+        text-align:center;
+      }
+      .avatar{
+        width:260px; height:260px;
+        border-radius:50%;
+        overflow:hidden;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
+      }
+      .avatar img{width:100%; height:100%; object-fit:cover;}
+      h1{
+        font-size:42px;
+        line-height:1.1;
+        margin:6px 0 0;
+      }
+      .subtitle{
+        margin-top:2px;
+        color:var(--muted);
+        font-size:20px;
+      }
+      .cta{
+        margin-top:12px;
+        border:none; cursor:pointer;
+        padding:22px 40px;
+        border-radius:999px;
+        background:var(--btn);
+        color:#fff; font-weight:800; font-size:26px;
+        box-shadow:0 12px 22px rgba(31,122,99,.2);
+      }
+      .cta:hover{ background:var(--btn-hover); }
+      .download{
+        margin-top:8px; color:#1a73e8; text-decoration:none; font-weight:600;
+      }
+      footer{
+        border-top:1px solid #eef2f4;
+        padding:32px 20px;
+        display:flex; align-items:center; justify-content:center;
+        color:#fff;
+        background:#0b141a;
+      }
+      footer .footwrap{
+        max-width:1120px; width:100%; display:flex; flex-wrap:wrap; gap:24px;
+        align-items:flex-start; justify-content:space-between; color:#cad5dc;
+      }
+      footer h4{margin:0 0 10px 0; color:#fff}
+      footer a{ color:#cad5dc; text-decoration:none }
+      .footcol{min-width:200px}
+      @media (max-width:640px){
+        .avatar{width:280px;height:280px}
+        h1{font-size:36px}
+        .subtitle{font-size:18px}
+        .cta{font-size:28px; padding:24px 44px; width:90%; max-width:520px}
+        header{position:static}
+      }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function(f,b,e,v,n,t,s){
+        if(f.fbq) return; n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+        if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+        t=b.createElement(e); t.async=!0; t.src=v;
+        s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1007474054838560');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+           src="https://www.facebook.com/tr?id=1007474054838560&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+
+  <body>
+    <header>
+      <div class="brand" aria-label="WhatsApp">
+        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#25D366" d="M128 0C57.3 0 0 57.3 0 128c0 23 6 44.7 16.6 63.3L0 256l66.6-16.3C85.3 250 106.9 256 128 256c70.7 0 128-57.3 128-128S198.7 0 128 0"/>
+          <path fill="#fff" d="M195.9 160.7c-2.9 8.1-14.4 14.9-23.3 16.9c-6.2 1.3-14.3 2.4-41.5-8.9c-34.8-14.5-57.3-50.3-59.1-52.6c-1.7-2.3-14.1-18.8-14.1-36c0-17.2 8.9-25.5 12-29c2.9-3.4 6.4-4.3 8.5-4.3c2.1 0 4.3 0 6.2 0.1c2 0.1 4.6-0.7 7.1 5.4c2.9 7.1 9.9 24.5 10.8 26.2c0.9 1.7 1.4 3.7 0.3 5.9c-1.1 2.3-1.7 3.7-3.4 5.7c-1.7 2-3.5 4.4-5 5.9c-1.7 1.7-3.5 3.5-1.5 6.9c2 3.4 8.7 14.4 18.7 23.3c12.8 11.4 23.6 15.1 27.1 16.8c3.5 1.7 5.5 1.4 7.6-0.9c2.1-2.3 8.8-10.2 11.2-13.7c2.3-3.4 4.9-2.9 8.1-1.7c3.4 1.1 21.3 10 24.9 11.8c3.5 1.7 5.9 2.6 6.7 4.1c0.8 1.3 0.8 7.6-2.1 15.7z"/>
+        </svg>
+        <span>WhatsApp</span>
+      </div>
+      <div class="top-actions">
+        <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener">Descargar</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" aria-label="Perfil WhatsApp">
+        <div class="avatar" aria-hidden="true">
+          <!-- Reemplaza la imagen por la tuya si querés -->
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Foto de perfil" />
+        </div>
+        <h1>Santiago Aguirre</h1>
+        <div class="subtitle">👇Hace Click aca Abajo👇</div>
+
+        <button id="cta" class="cta" type="button" aria-label="Enviar Mensaje por WhatsApp">
+          Enviar Mensaje
+        </button>
+
+        <div style="margin-top:10px; color:#6b7b85; font-weight:600;">
+          ¿Aún no tienes WhatsApp?
+          <a class="download" href="https://www.whatsapp.com/download" target="_blank" rel="noopener">Descargar</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footwrap">
+        <div class="footcol">
+          <h4>Lo que hacemos</h4>
+          <a href="#">Funciones</a><br/>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footcol">
+          <h4>Quiénes somos</h4>
+          <a href="#">Acerca de nosotros</a><br/>
+          <a href="#">Empleos</a>
+        </div>
+        <div class="footcol">
+          <h4>Usa WhatsApp</h4>
+          <a href="#">Android</a><br/>
+          <a href="#">iPhone</a>
+        </div>
+        <div class="footcol">
+          <h4>¿Necesitas ayuda?</h4>
+          <a href="#">Contáctanos</a><br/>
+          <a href="https://faq.whatsapp.com" target="_blank" rel="noopener">Centro de ayuda</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        const phoneRaw = '+15558329524';
+        const msg = 'Hola. ¿Como aplico el sistema en mi negocio?';
+        const phone = phoneRaw.replace(/[^0-9]/g,''); // wa.me no acepta +
+        const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+        const cta = document.getElementById('cta');
+        cta.addEventListener('click', function(){
+          try {
+            if (typeof fbq === 'function') {
+              fbq('trackCustom','ClickWhatsApp');
+            }
+          } catch(e){ /* no-op */ }
+
+          // Abrir en nueva pestaña sin delay
+          const cacheBuster = Math.random().toString(36).slice(2);
+          window.open(waUrl + '&r=' + cacheBuster, '_blank', 'noopener');
+        });
+      })();
+    </script>
+  </body>
+</html>
