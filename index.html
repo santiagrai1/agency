@@ -10,11 +10,6 @@
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="dns-prefetch" href="//wa.me">
 
-  <!-- Open Graph básico -->
-  <meta property="og:title" content="Hablemos por WhatsApp — te respondo en &lt;10 min">
-  <meta property="og:description" content="Sistema de anuncios estable para tiendas de vapes. Asesoría gratis.">
-  <meta property="og:type" content="website">
-
   <style>
     :root{
       --ink:#13222b; --muted:#667581; --bg:#fff;
@@ -28,7 +23,7 @@
     a{text-decoration:none;color:inherit}
 
     /* Topbar (urgencia + estado) */
-    .topbar{background:var(--accent);color:var(--wa);text-align:center;padding:8px 12px;font-weight:800}
+    .topbar{background:var(--accent);color:var(--wa);text-align:center;padding:6px 10px;font-weight:800;font-size:13px}
     .badge-online{display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-weight:800}
     .badge-online i{width:8px;height:8px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 1.6s infinite}
     @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
@@ -38,7 +33,7 @@
       position:sticky;top:0;z-index:50;
       background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(6px);
     }
-    .nav{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+    .nav{max-width:980px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px;font-weight:900}
     .brand svg{width:26px;height:26px}
     .cta-mini{background:var(--wa);color:#fff;border-radius:999px;padding:10px 16px;font-weight:800;box-shadow:0 10px 20px rgba(10,108,90,.2)}
@@ -48,24 +43,25 @@
     .section{max-width:820px;margin:0 auto}
     .hero{text-align:center}
 
-    /* Avatar compacto */
+    /* Avatar compacto (180px) */
     .avatar{
-      width:220px;height:220px;margin:8px auto 10px;border-radius:999px;
+      width:180px;height:180px;margin:6px auto 8px;border-radius:999px;
       overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.10)
     }
     .avatar img{width:100%;height:100%;object-fit:cover}
     @media (min-width:768px){
-      .avatar{width:260px;height:260px;margin:10px auto 12px}
+      .avatar{width:240px;height:240px;margin:8px auto 10px}
     }
 
-    h1{font-size:26px;line-height:1.18;margin:6px 0 8px}
-    .sub{font-size:15px;color:var(--muted);margin:0 0 10px}
-    .badges{font-size:14px;margin:0 0 10px}
+    /* Tipografía/espaciados más ceñidos en hero */
+    h1{font-size:24px;line-height:1.18;margin:6px 0 6px}
+    .sub{font-size:14.5px;color:var(--muted);margin:0 0 8px}
+    .badges{font-size:13.5px;margin:0 0 8px}
 
-    /* Beneficios */
-    .bullets{margin:10px auto 14px;padding:0 4px}
+    /* Beneficios compactos */
+    .bullets{margin:8px auto 12px;padding:0 4px}
     .bullets ul{list-style:disc;padding-left:20px}
-    .bullets li{margin:6px 0;font-size:15px}
+    .bullets li{margin:5px 0;font-size:15px}
 
     /* CTA principal grande */
     .cta{
@@ -81,8 +77,6 @@
     .card{border:1px solid var(--border);border-radius:14px;padding:16px 16px;margin:16px 0}
     .card h3{margin:0 0 8px;font-size:18px}
     .card p{margin:8px 0;color:#31414d}
-
-    /* Grid simple para testimonios */
     .grid{display:grid;gap:12px}
     @media (min-width:640px){ .grid{grid-template-columns:1fr 1fr} }
     .tiny{font-size:13px;color:#60707b}
@@ -92,13 +86,13 @@
     summary{cursor:pointer;font-weight:800}
     details p{margin:10px 0 0;color:#31414d}
 
-    /* Sticky CTA (inteligente) */
+    /* Sticky CTA (más chica) */
     .sticky{
       position:fixed;left:12px;right:12px;bottom:14px;z-index:60;text-align:center;
-      border-radius:999px;padding:16px 20px;font-size:20px;background:var(--wa);color:#fff;font-weight:900;
+      border-radius:999px;padding:14px 18px;font-size:18px;background:var(--wa);color:#fff;font-weight:900;
       box-shadow:0 14px 28px rgba(10,108,90,.34);
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
-      display:none; /* se muestra por JS cuando el CTA principal no está visible */
+      padding-bottom: calc(14px + env(safe-area-inset-bottom));
+      display:none; /* JS decide cuándo mostrar */
     }
     .sticky:hover{background:var(--wa-hover)}
 
@@ -119,7 +113,7 @@
       if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
       t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1007474054838560');  // tu Pixel Meta
+    fbq('init', '1007474054838560');
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1007474054838560&ev=PageView&noscript=1"/></noscript>
@@ -150,7 +144,7 @@
       <div class="avatar" aria-hidden="true">
         <img
           src="https://scontent.fros9-2.fna.fbcdn.net/v/t39.30808-6/559960931_4092512047667910_9077776973640673050_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wFgO9hdzttEQ7kNvwHDDjId&_nc_oc=Adm2covCrS5npVD8N0bSEya86Evap78SgvCx0TGJpCDy2kZVgqDmFiD5YUsZrkqkZqNF3Fjn1VTTu7Hw9cB17d27&_nc_zt=23&_nc_ht=scontent.fros9-2.fna&_nc_gid=5Hpt31dnLarb4LebLpwYOQ&oh=00_AfekLOd-NPndO3yAybZRlOqdYoUdb86nuG4kPgwDEYepxA&oe=68FEDD43"
-          alt="Santiago Aguirre" width="220" height="220" loading="eager" fetchpriority="high" />
+          alt="Santiago Aguirre" width="180" height="180" loading="eager" fetchpriority="high" />
       </div>
 
       <h1>Clientes nuevos a diario con anuncios estables (sin bloqueos)</h1>
@@ -230,18 +224,21 @@
         <p>No. La primera asesoría es 100% gratis.</p>
       </details>
     </section>
+
+    <!-- Spacer para que la sticky no tape contenido cuando aparece -->
+    <div id="sticky-spacer" style="height:0;"></div>
   </main>
 
-  <!-- Sticky CTA (solo se muestra cuando el CTA principal no está visible) -->
-  <a id="cta-sticky" class="sticky js-wa" href="#" aria-label="WhatsApp — Respuesta rápida">WhatsApp · Respuesta rápida</a>
+  <!-- Sticky CTA (inteligente) -->
+  <a id="cta-sticky" class="sticky js-wa" href="#" aria-label="WhatsApp — Respuesta rápida">WhatsApp ahora</a>
 
   <footer>© <span id="y"></span> Santiago Aguirre — Asesoría por WhatsApp · No vendemos productos de vapeo</footer>
 
   <script>
     (function(){
       // ---------- Config ----------
-      const phoneRaw = '+5493417513744';            // Tu número
-      const baseMsg  = 'Hola, vi tu página. Quiero saber cómo aplicar el sistema en mi negocio.'; // mensaje base
+      const phoneRaw = '+5493417513744';
+      const baseMsg  = 'Hola, vi tu página. Quiero saber cómo aplicar el sistema en mi negocio.';
       const phone    = phoneRaw.replace(/[^0-9]/g,''); // wa.me no acepta '+'
 
       // UTM al mensaje (atribución visible en la conversación)
@@ -258,7 +255,7 @@
       }
 
       // Conversión ÚNICA: ClickWhatsApp (sin delay)
-      function openWA(e){
+      function openWA(){
         try { if (typeof fbq === 'function') fbq('trackCustom', 'ClickWhatsApp'); } catch(_){}
         window.open(buildWA(), '_blank', 'noopener,noreferrer');
       }
@@ -270,24 +267,39 @@
       if (window.matchMedia('(pointer:fine)').matches) {
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(buildWA())}`;
         const img = document.getElementById('qrimg');
-        if (img) {
-          img.src = qrUrl;
-          document.getElementById('qr').style.display = 'block';
-        }
+        if (img) { img.src = qrUrl; document.getElementById('qr').style.display = 'block'; }
       }
 
-      // Sticky visible solo cuando el CTA principal NO se ve
-      const heroCTA = document.getElementById('cta-main');
+      // Sticky: aparece más tarde y no tapa contenido (usa spacer)
       const sticky  = document.getElementById('cta-sticky');
-      const io = new IntersectionObserver(([e])=>{
-        sticky.style.display = (e && e.isIntersecting) ? 'none' : 'block';
-      }, {threshold: 0.4});
-      if (heroCTA && sticky) { io.observe(heroCTA); }
+      const spacer  = document.getElementById('sticky-spacer');
+      function setSticky(on){
+        sticky.style.display = on ? 'block' : 'none';
+        if (spacer) spacer.style.height = on ? '70px' : '0';
+      }
+
+      // Mostrar sticky al superar 25% de scroll de la pantalla
+      let shown = false;
+      window.addEventListener('scroll', ()=>{
+        if (!shown && window.scrollY > window.innerHeight * 0.25){
+          setSticky(true); shown = true;
+        }
+      }, {passive:true});
+
+      // Ocultar sticky si el CTA principal está visible; mostrar si no lo está
+      const heroCTA = document.getElementById('cta-main');
+      if (heroCTA){
+        const io = new IntersectionObserver(([e])=>{
+          if (e && e.isIntersecting){ setSticky(false); }
+          else { setSticky(true); shown = true; }
+        }, {threshold: 0.4});
+        io.observe(heroCTA);
+      }
 
       // Año footer
       document.getElementById('y').textContent = new Date().getFullYear();
 
-      // Ejemplo simple de slots dinámicos (opcional)
+      // Slots dinámicos (opcional)
       const camp = (p.get('utm_campaign') || '').toLowerCase();
       if (camp.includes('high')) document.getElementById('slots').textContent = '3';
     })();
