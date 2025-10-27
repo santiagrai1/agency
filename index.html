@@ -41,7 +41,7 @@
     .section{max-width:820px;margin:0 auto}
     .hero{text-align:center}
 
-    /* Avatar compacto (mobile-only) */
+    /* Avatar compacto (solo mobile) */
     .avatar{width:160px;height:160px;margin:6px auto 8px;border-radius:999px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08)}
     .avatar img{width:100%;height:100%;object-fit:cover}
 
@@ -93,14 +93,14 @@
     footer{max-width:820px;margin:36px auto 24px;text-align:center;color:#8fa0aa;font-size:13px}
   </style>
 
-  <!-- Meta Pixel: PageView (baseline). ÚNICA conversión: ClickWhatsApp -->
+  <!-- Meta Pixel -->
   <script>
     !(function(f,b,e,v,n,t,s){
       if(f.fbq) return; n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
       if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
       t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1007474054838560');
+    fbq('init', '1007474054838560');   /* tu pixel */
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1007474054838560&ev=PageView&noscript=1"/></noscript>
@@ -212,35 +212,41 @@
     (function(){
       // ---------- Config ----------
       const phoneRaw = '+5493417513744';
-      const baseMsg  = 'Hola, vi tu página. Quiero saber cómo aplicar el sistema en mi negocio.';
+      const baseMsg  = 'Hola, vi tu página. Quiero saber cómo aplicar el sistema en mi negocio.'; // mensaje limpio
       const phone    = phoneRaw.replace(/[^0-9]/g,'');
 
-      // UTM al mensaje (se ve en la conversación)
+      // Tomamos UTMs de la URL (para el evento, NO para el mensaje)
       const p = new URLSearchParams(location.search);
-      const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
-      const utmStr = utmKeys.map(k => p.get(k) ? `${k}=${p.get(k)}` : '').filter(Boolean).join('&');
-      const finalMsg = utmStr ? `${baseMsg} [${utmStr}]` : baseMsg;
+      const utm = {
+        utm_source:  p.get('utm_source')  || '',
+        utm_medium:  p.get('utm_medium')  || '',
+        utm_campaign:p.get('utm_campaign')|| '',
+        utm_content: p.get('utm_content') || '',
+        utm_term:    p.get('utm_term')    || ''
+      };
 
-      // URLs: preferimos APP nativa y caemos a web si falla
-      const waApp = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(finalMsg)}`;
-      const waWeb = `https://wa.me/${phone}?text=${encodeURIComponent(finalMsg)}&r=${Math.random().toString(36).slice(2)}`;
+      // Preferimos app nativa y caemos a wa.me si falla
+      const waApp = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(baseMsg)}`;
+      const waWeb = `https://wa.me/${phone}?text=${encodeURIComponent(baseMsg)}&r=${Math.random().toString(36).slice(2)}`;
 
       function openWA(){
-        try { if (typeof fbq === 'function') fbq('trackCustom', 'ClickWhatsApp'); } catch(_){}
-        const now = Date.now();
-        // Intento abrir app nativa
+        // Enviar conversión con UTMs como parámetros
+        try { if (typeof fbq === 'function') fbq('trackCustom', 'ClickWhatsApp', utm); } catch(_){}
+
+        // Intentar abrir app nativa y fallback a web
+        const t0 = Date.now();
         window.location.href = waApp;
-        // Fallback a wa.me si no hay app (iOS/Android): ~800ms
-        setTimeout(()=>{ if (Date.now() - now < 1800) window.location.href = waWeb; }, 800);
+        setTimeout(()=>{ if (Date.now() - t0 < 1800) window.location.href = waWeb; }, 800);
       }
 
       // Conectar a TODOS los CTAs
       document.querySelectorAll('.js-wa').forEach(el => el.addEventListener('click', openWA));
 
-      // Sticky: aparece tras 25% de scroll o si el CTA no está visible
+      // Sticky: aparece tras 25% de scroll o si el CTA no está visible; usa spacer para no tapar
       const sticky  = document.getElementById('cta-sticky');
       const spacer  = document.getElementById('sticky-spacer');
       function setSticky(on){
+        if (!sticky) return;
         sticky.style.display = on ? 'block' : 'none';
         if (spacer) spacer.style.height = on ? '70px' : '0';
       }
@@ -259,11 +265,12 @@
       }
 
       // Año footer
-      document.getElementById('y').textContent = new Date().getFullYear();
+      const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
 
       // Slots dinámicos (opcional)
-      const camp = (p.get('utm_campaign') || '').toLowerCase();
-      if (camp.includes('high')) document.getElementById('slots').textContent = '3';
+      const slots = document.getElementById('slots');
+      const camp = (utm.utm_campaign || '').toLowerCase();
+      if (slots && camp.includes('high')) slots.textContent = '3';
     })();
   </script>
 </body>
